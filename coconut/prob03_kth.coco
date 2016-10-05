@@ -2,17 +2,19 @@
 Problem 3: Get the kth element of a sequence
 """
 
-def kth(seq, k):
+from listdef import List
+
+def kth(lst, k):
     """
     Get the kth element of a sequence
     """
-    [head] + tail = seq
     case k:
         match 0:
-            return head
+            return lst.head
         match _:
-            return kth(tail, k - 1)
+            return kth(lst.tail, k - 1)
 
-s = 'hello world'
-for i in range(len(s)):
+s = List('hello', List('world', List('of', List('Coconut', None))))
+
+for i in range(4):
     print(kth(s, i))
