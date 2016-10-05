@@ -1,0 +1,17 @@
+"""
+Problem 05: Reverse list
+"""
+
+from listdef import List
+
+def rev_step(in_list, out_list):
+    case in_list:
+        match None:
+            return out_list
+        match List(head, tail):
+            return rev_step(tail, List(head, out_list))
+
+def reverse(lst):
+    return rev_step(lst, None)
+
+List(1, List(2, List(3, None))) |> reverse |> print
