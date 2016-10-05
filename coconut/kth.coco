@@ -1,0 +1,18 @@
+"""
+Problem 3: Get the kth element of a sequence
+"""
+
+def kth(seq, k):
+    """
+    Get the kth element of a sequence
+    """
+    [head] + tail = seq
+    case k:
+        match 0:
+            return head
+        match _:
+            return kth(tail, k - 1)
+
+s = 'hello world'
+for i in range(len(s)):
+    print(kth(s, i))
