@@ -1,0 +1,21 @@
+"""
+Problem 04: Length of List
+
+Find the number of elements in a list
+"""
+
+from listdef import List
+
+def length(lst):
+    case lst:
+        match None:
+            return 0
+        match List(_, None):
+            return 1
+        match List(_, tail):
+            return 1 + length(tail)
+
+None |> length |> print
+List(1, None) |> length |> print
+List(1, List(2, None)) |> length |> print
+List(1, List(2, List(3, None))) |> length |> print

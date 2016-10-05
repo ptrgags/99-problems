@@ -1,25 +1,23 @@
 """
-Problem 2: The Penultimate Element
-
-Find the next to last element of a list
+Problem 02: Penultimate
 """
 
-def penultimate(seq):
-    """
-    Find the next to last element of a sequence
-    """
-    case seq:
-        match []:
+from listdef import List
+
+def penultimate(lst):
+    case lst:
+        match None:
             return None
-        match [_]:
+        match List(_, None):
             return None
-        match [x, _]:
+        match List(x, List(_, None)):
             return x
-        match [_] + tail:
+        match List(_, tail):
             return penultimate(tail)
 
-[] |> penultimate |> print
-['a'] |> penultimate |> print
-[1, 2] |> penultimate |> print
-[1, 3, 4, 5] |> penultimate |> print
-[1, 3, 4, 5, 2, 6] |> penultimate |> print
+s = List(1, List(2, List(3, List(4, None))))
+
+None |> penultimate |> print
+List(1, None) |> penultimate |> print
+List(1, List(2, None)) |> penultimate |> print
+s |> penultimate |> print
