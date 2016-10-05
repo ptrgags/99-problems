@@ -5,21 +5,19 @@ In this case I'm using regular python lists
 but I'm trying out pattern matching in coco
 """
 
-def last(seq):
-    """
-    Find the last element of a list
-    """
-    case seq:
-        match []:
-            return None
-        match [x]:
-            return x
-        match [_] + tail:
-            return last(tail)
-    else:
-        raise ValueError("Not a valid sequence!")
+from listdef import List
 
-[] |> last |> print
-[1] |> last |> print
-[1, 2] |> last |> print
-[1, 2, 3, 4] |> last |> print
+def last(lst):
+    """Find the last element of a list"""
+    case lst:
+        match None:
+            return None
+        match List(x, None):
+            return x
+        match List(_, tail):
+            return last(tail)
+
+# Test Cases
+None |> last |> print
+List(1, None) |> last |> print
+List(1, List(2, List(3, None))) |> last |> print

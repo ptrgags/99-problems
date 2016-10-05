@@ -1,2 +1,3 @@
 # Ignore python files in the coconut directory
 *.py
+*.pyc
