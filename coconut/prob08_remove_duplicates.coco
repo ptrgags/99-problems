@@ -1,0 +1,19 @@
+"""
+Problem 08: Eliminate consecutive duplicates
+"""
+
+from listdef import List
+
+def compress(lst):
+    case lst:
+        match None:
+            return lst
+        match List(_, None):
+            return lst
+        match List(x, List(x, tail)):
+            return compress(List(x, tail))
+        match List(head, tail):
+            return List(head, compress(tail))
+
+print(compress(
+    List(1, List(1, List(2, List(3, List(3, List(3, List(2, None)))))))))
