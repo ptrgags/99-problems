@@ -1,0 +1,14 @@
+"""
+Problem 14: Duplicate list elements
+"""
+
+from listdef import List
+
+def dup(lst):
+    case lst:
+        match None:
+            return None
+        match List(head, tail):
+            return List(head, List(head, dup(tail)))
+
+List('a', List('b', List('c', None))) |> dup |> print
