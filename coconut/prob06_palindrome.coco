@@ -1,0 +1,25 @@
+"""
+Problem 06: Check for palindromes
+"""
+
+from listdef import List
+from prob05_reverse import reverse_list
+
+def is_equal(lst1, lst2):
+    case [lst1, lst2]:
+        match [None, None]:
+            return True
+        match [List(x, tail1), List(x, tail2)]:
+            return is_equal(tail1, tail2)
+    else:
+        return False
+
+def is_palindrome(lst):
+    return is_equal(lst, reverse_list(lst))
+
+None |> is_palindrome |> print
+List(1, None) |> is_palindrome |> print
+List(1, List(2, List(3, None))) |> is_palindrome |> print
+List(1, List(2, List(1, None))) |> is_palindrome |> print
+List(1, List(2, List(1, List(1, None)))) |> is_palindrome |> print
+List(1, List(2, List(2, List(1, None)))) |> is_palindrome |> print

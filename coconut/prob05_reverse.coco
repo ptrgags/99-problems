@@ -11,7 +11,7 @@ def rev_step(in_list, out_list):
         match List(head, tail):
             return rev_step(tail, List(head, out_list))
 
-def reverse(lst):
+def reverse_list(lst):
     return rev_step(lst, None)
 
-List(1, List(2, List(3, None))) |> reverse |> print
+List(1, List(2, List(3, None))) |> reverse_list |> print
