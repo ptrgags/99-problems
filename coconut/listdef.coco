@@ -1,1 +1,3 @@
-data List(head, tail)
+data List(head, tail):
+    def __repr__(self):
+        return "({} {})".format(self.head, self.tail)
