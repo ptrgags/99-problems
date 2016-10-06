@@ -1,0 +1,32 @@
+"""
+Problem 7: Flatten a nested list
+"""
+
+from listdef import List
+from prob05_reverse import reverse_list
+
+def prepend_list(lst1, lst2):
+    case lst1:
+        match None:
+            return lst2
+        match List(head, tail):
+            return prepend_list(tail, List(head, lst2))
+
+def append_list(lst1, lst2):
+    return prepend_list(reverse_list(lst1), lst2)
+
+def flatten_list(lst):
+    case lst:
+        match None:
+            return None
+        match List(head is List, tail):
+            return append_list(flatten_list(head), flatten_list(tail))
+        match List(head, tail):
+            return List(head, flatten_list(tail))
+
+a = List(1, List(2, None))
+b = List(3, List(4, List(5, None)))
+c = List(1, List(a, List(3, List(4, List(b, List(6, None))))))
+
+c |> flatten_list |> print
+
