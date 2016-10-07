@@ -1,0 +1,43 @@
+"""
+Problem 09: Pack consecutive duplicates
+"""
+
+from listdef import List
+from prob05_reverse import reverse_list
+
+def pack_step(packed, pack_stack, in_lst):
+    """
+    Single step in the recursive packing algo.
+
+    :param List packed: the output list (constructed in reverse)
+    :param List pack_stack: a temporary list for the current run
+    :param List in_lst: the input. This gets destructured as we go
+    """
+    case [pack_stack, in_lst]:
+        match [_, None]:
+            # End of input, pack up and return
+            return List(pack_stack, packed)
+        match [None, List(head, tail)]:
+            # First time through, put the first element on the
+            # staging stack
+            return pack_step(packed, List(head, None), tail)
+        match [List(x, _), List(x, tail)]:
+            # If the first elements match, just add to the
+            # staging stack
+            return pack_step(packed, List(x, pack_stack), tail)
+        match [List(x, _), List(y, tail)]:
+            # If the first elements do not match, move the staging
+            # stack to the output list and the first input element
+            # to a new staging stack.
+            return pack_step(List(pack_stack, packed), List(y, None), tail)
+    
+
+def pack(lst):
+    return pack_step(None, None, lst)
+
+a = List(1, List(1, List (1, List(2, List(3, List(3, List(2, List(4, None))))))))
+b = pack(a)
+# TODO: Identify and Report issue, for some reason this throws an exception 
+# when I put the call to reverse_list in the pack() function, but it works
+# here outside the function
+b |> reverse_list |> print
