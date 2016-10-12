@@ -14,4 +14,5 @@ def rev_step(in_list, out_list):
 def reverse_list(lst):
     return rev_step(lst, None)
 
-List(1, List(2, List(3, None))) |> reverse_list |> print
+if __name__ == '__main__':
+    List(1, List(2, List(3, None))) |> reverse_list |> print

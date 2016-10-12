@@ -1,0 +1,18 @@
+"""
+Problem 17: Split list
+"""
+from listdef import List
+from prob05_reverse import reverse_list
+
+def split_list_n(first, second, n):
+    case n:
+        match 0:
+            return List(reverse_list(first), List(second, None))
+        match _:
+            return split_list_n(List(second.head, first), second.tail, n - 1)
+
+def split_list(lst, n):
+    return split_list_n(None, lst, n)
+
+a = List('a', List('b', List('c', List('d', List('e', None)))))
+print(split_list(a, 2))
