@@ -1,0 +1,32 @@
+"""
+Problem 12: Decode a run-length encoded list
+"""
+
+from listdef import List
+
+def decode_run_length(lst):
+    case lst:
+        # End of list: Continue
+        match None:
+            return None
+        # Only one element left in the first run, just return
+        # the first element and decode the rest
+        match List(List(1, List(x, None)), tail):
+            return List(x, decode_run_length(tail))
+        # Unpack a single value, then continue
+        match List(List(n, List(x, None)), tail):
+            run = List(n - 1, List(x, None))
+            repacked = List(run, tail)
+            return List(x, decode_run_length(repacked))
+        # Only a single element, keep as-is
+        match List(x, tail):
+            return List(x, decode_run_length(tail))
+
+a = List(4, List('A', None))
+b = 'B'
+c = List(2, List('C', None))
+d = 'D'
+e = List(3, List('E', None))
+
+l = List(a, List(b, List(c, List(d, List(e, None)))))
+print(decode_run_length(l))
