@@ -1,0 +1,24 @@
+"""
+Problem 15: Replicate elements of a list
+"""
+
+from listdef import List
+
+def replicate_step(lst, n, count):
+    case [lst, count]:
+        # We reached the end of the list, stop
+        match [None, _]:
+            return None
+        # No more replication, move to the next
+        # element
+        match [List(head, tail), 0]:
+            return replicate_step(tail, n, n)
+        # Replicate the first element and continue
+        match [List(x, tail), _]:
+            return List(x, replicate_step(lst, n, count - 1))
+
+def replicate(lst, n):
+    return replicate_step(lst, n, n)
+
+l = List('A', List('B', List('C', None)))
+print(replicate(l, 3))
