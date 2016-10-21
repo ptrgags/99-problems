@@ -1,0 +1,23 @@
+"""
+Problem 16: Drop every nth element
+"""
+
+from listdef import List
+
+def drop_nth_step(lst, n, count):
+    case [lst, count]:
+        # Stop at the end of the list
+        match [None, _]:
+            return None
+        # Count reached 1, drop this element
+        match [List(_, tail), 1]:
+            return drop_nth_step(tail, n, n)
+        # Continue down the list, but count down
+        match [List(x, tail), _]:
+            return List(x, drop_nth_step(tail, n, count - 1))
+
+def drop_nth(lst, n):
+    return drop_nth_step(lst, n, n)
+
+l = List(1, List(2, List(3, List(4, List(5, List(6, List(7, None)))))))
+print(drop_nth(l, 3))
